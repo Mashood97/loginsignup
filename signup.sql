@@ -50,7 +50,7 @@ end
 
 
 Declare @userEmail nvarchar(50), @userPassword nvarchar(50),@responseMessage varchar(50)
-Exec spSignupUser @userEmail='mashood1@gmail.com',@userPassword = 'Password',@responseMessage = @responseMessage output
+Exec spSignupUser @userEmail='mashood21@gmail.com',@userPassword = '$2b$10$fZe7hjws5AzGUa5J0yj2Le1fLAf3oV5SAEee3nneu4VUGEsVIAf82',@responseMessage = @responseMessage output
 print @responseMessage;
 
 Select * from signupUser

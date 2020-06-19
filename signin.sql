@@ -33,36 +33,3 @@ print @responseMessage
 
 
 
-alter proc spUserInfo
-@token nvarchar(max),
-@responseMessage varchar(50) output,
-@userId int,
-@SelectedDate datetime
-as 
-
-begin
-	set nocount on;
-
-
-	begin try
-	IF EXISTS (Select userEmail,userPassword from signupUser where userId = @userId)
-	begin 
-	Select * from signupUser where @token is not null and userId = @userId;
-		set @responseMessage = 'Success';
-	end
-	else
-	set @responseMessage= 'Failed'
-		
-	end try
-
-	begin catch
-		set @responseMessage = 'failed';
-	end catch
-end
-
-Declare @token nvarchar(max),@userId int, @responseMessage varchar(50)
-EXEC spUserInfo @userId = 5, @token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc2hvb2RzaWRkMTIyMUBnbWFpbC5jb20iLCJ1c2VySWQiOjEsImlhdCI6MTU5MjQ3MjE1NCwiZXhwIjoxNTkyNDc1NzU0fQ.CeAKShsTRM-bLS0PlMXeRvgX43c2qaDGYWFLZEe-vbE', @responseMessage = @responseMessage output
-print @responseMessage
-
-
-
